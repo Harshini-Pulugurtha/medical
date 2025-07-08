@@ -72,13 +72,6 @@ def main():
                 st.markdown("**Answer:**")
                 st.write(answer)
 
-                if sources:
-                    st.markdown("**Sources:**")
-                    for i, doc in enumerate(sources, 1):
-                        meta = getattr(doc, 'metadata', {})
-                        st.write(f"{i}. {meta.get('source', meta)}")
-                else:
-                    st.write("No sources found.")
             except Exception as e:
                 st.error(f"⚠️ Something went wrong during processing: {e}")
                 st.text(traceback.format_exc())
