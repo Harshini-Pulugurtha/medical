@@ -20,3 +20,4 @@ googletrans
 gTTS
 playsound==1.2.2
 ffmpeg-python
+llama-cpp-python

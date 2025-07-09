@@ -2,7 +2,7 @@ import streamlit as st
 import traceback
 from langchain.prompts import PromptTemplate
 from langchain_community.vectorstores import FAISS
-from langchain_community.llms import CTransformers
+
 from langchain.chains import RetrievalQA
 from langchain_huggingface import HuggingFaceEmbeddings
 from transformers import pipeline
@@ -14,6 +14,7 @@ import base64
 import tempfile
 from pydub import AudioSegment
 import time
+from langchain.llms import LlamaCpp
 
 DB_FAISS_PATH = 'vectorstore/db_faiss'
 
@@ -93,13 +94,14 @@ def retrieval_qa_chain(llm, prompt, db):
     )
 
 def load_llm():
-    return CTransformers(
-        model="models/unsloth.Q4_K_M.gguf",  # Update path if your filename is different
-        model_type="llama",
-        config={"temperature": 0.7, "max_new_tokens": 256},
-        local_files_only=True
+    return LlamaCpp(
+        model_path="models/unsloth.Q4_K_M.gguf",
+        n_ctx=2048,
+        temperature=0.7,
+        max_tokens=256,
+        verbose=True
     )
-    #print(llm("What is cancer?"))
+
 
 @st.cache_resource
 def qa_bot():
