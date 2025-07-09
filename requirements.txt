@@ -11,3 +11,12 @@ langchain-community
 langchain-huggingface
 huggingface_hub
 ctransformers
+sentencepiece
+sacremoses
+streamlit-mic-recorder
+pydub
+SpeechRecognition
+googletrans
+gTTS
+playsound==1.2.2
+ffmpeg-python
